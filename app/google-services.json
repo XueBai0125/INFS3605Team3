@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "624580141304",
+    "firebase_url": "https://visagio-6e108.firebaseio.com",
+    "project_id": "visagio-6e108",
+    "storage_bucket": "visagio-6e108.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624580141304:android:bd8d59ec99426cfef61b0d",
+        "android_client_info": {
+          "package_name": "com.example.infs3605team3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624580141304-ajd40c9obuq594sr45jaj9170j2qnpf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjhnMCi4m9eXRUhZFYiV6AvqxRqaXyLWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624580141304-ajd40c9obuq594sr45jaj9170j2qnpf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
