@@ -42,4 +42,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:19.1.1'
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     implementation 'com.google.firebase:firebase-database:19.3.0'
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0-beta05'
 }
