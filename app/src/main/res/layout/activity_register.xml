@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,98 +13,100 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimary"
 
-        android:theme="@style/ThemeOverlay.AppCompat.Light"
-       />
+        android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/name"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/input_email"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_email"
-                    android:paddingStart="20dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:inputType="textEmailAddress"
-                    android:hint="Email">
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:paddingStart="20dp"
-                    android:inputType="textEmailAddress"
-                    android:hint="Name">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="@string/password"
+            android:inputType="textEmailAddress"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
 
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_pwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:paddingStart="20dp"
-                    android:inputType="textEmailAddress"
-                    android:hint="Password">
+    <LinearLayout
+        android:id="@+id/chooseRole"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
 
-                </com.google.android.material.textfield.TextInputEditText>
-            </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/role"
+            android:textColor="#212121"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/tvRole"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:hint="@string/type"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="#212121"
+            android:textSize="16sp" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/chooseRole"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/white"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:text="Role"
-                    android:textColor="#212121"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/tvRole"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="end|center_vertical"
-                    android:hint="type"
-                    android:paddingRight="20dp"
-                    android:textColor="#212121"
-                    android:textSize="16sp"
-                   />
-            </LinearLayout>
-            <Button
-                android:id="@+id/btn_sign"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textColor="@color/white"
-                android:background="#0000FF"
-                android:layout_margin="30dp"
-                android:text="Submit"
-                />
-
+    <Button
+        android:id="@+id/btn_sign"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="30dp"
+        android:background="#0000FF"
+        android:text="@string/submit"
+        android:textColor="@color/white" />
 
 
 </LinearLayout>

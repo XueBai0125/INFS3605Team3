@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            getWindow().getDecorView().setSystemUiVisibility( View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.nav_list) {
                     switchTab(mBookingFragment);
                     return true;
-                }else if (menuItem.getItemId() == R.id.nav_chat) {
+                } else if (menuItem.getItemId() == R.id.nav_chat) {
                     switchTab(mChatFragment);
                     return true;
-                }else if (menuItem.getItemId() == R.id.nav_profile) {
+                } else if (menuItem.getItemId() == R.id.nav_profile) {
                     switchTab(mMineFragment);
                     return true;
                 }

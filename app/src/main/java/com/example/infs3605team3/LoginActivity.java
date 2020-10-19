@@ -14,10 +14,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
@@ -31,21 +35,21 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
-        ImmersionBar.with(this)
-                .transparentStatusBar()
-                .statusBarDarkFont(false)
-                .init();
+//        ImmersionBar.with(this)
+//                .transparentStatusBar()
+//                .statusBarDarkFont(false)
+//                .init();
 
     }
 
     private void initView() {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
-        Button  btnsign = findViewById(R.id.btn_login);
+        Button btnsign = findViewById(R.id.btn_login);
         findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity( new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
         btnsign.setOnClickListener(new View.OnClickListener() {
@@ -59,13 +63,13 @@ public class LoginActivity extends AppCompatActivity {
     private void signIn() {
         String email = etEmail.getText().toString();
         String pwd = etPassword.getText().toString();
-        if (TextUtils.isEmpty(email)){
+        if (TextUtils.isEmpty(email)) {
             return;
         }
-        if (TextUtils.isEmpty(pwd)){
+        if (TextUtils.isEmpty(pwd)) {
             return;
         }
-        FirebaseAuth mAuth= FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signInWithEmailAndPassword(email, pwd)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -76,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         } else {
-                            Toast.makeText(LoginActivity.this,"failed, Check Email or Password",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, "failed, Check Email or Password", Toast.LENGTH_SHORT).show();
                         }
 
 
