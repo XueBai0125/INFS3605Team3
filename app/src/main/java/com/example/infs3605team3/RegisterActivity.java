@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,10 +21,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
-    TextView tvRole;
+    RadioGroup rbRole;
     EditText etEmail,etPwd;
 
-    private EditText etName;
+    private EditText etFirstName;
+    private EditText etLastName;
+    private EditText etPwdAgain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,14 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initView();
+        //
 
 
     }
 
     private void initView() {
         Toolbar mToolbar=findViewById(R.id.toolbar);
+        mToolbar.setTitle("Create a new account");
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -48,9 +53,11 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         etEmail=findViewById(R.id.et_email);
-        etName=findViewById(R.id.et_name);
-        tvRole =findViewById(R.id.tvRole);
+        etFirstName=findViewById(R.id.et_firstname);
+        etLastName=findViewById(R.id.et_lastname);
+        rbRole =findViewById(R.id.chooseRole);
         etPwd=findViewById(R.id.et_pwd);
+        etPwdAgain=findViewById(R.id.et_pwd_again);
         findViewById(R.id.btn_sign).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,40 +65,29 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         });
-        findViewById(R.id.chooseRole).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                chooseRole();
-            }
-        });
-
-
 
     }
 
-    private void chooseRole() {
-         String[] Roles =new String[] {"Tenant","Homeowner"};
-        new AlertDialog.Builder(this)
-                .setTitle("Choose role")
-                .setSingleChoiceItems(Roles, -1, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        tvRole.setText(Roles[which]);
-                    }
-                }).create().show();
-    }
+
 
 
     private void signUP(){
         String email =etEmail.getText().toString();
-        String role = tvRole.getText().toString();
-        String name =etName.getText().toString();
+        String role = "tenant";
+        if (rbRole.getCheckedRadioButtonId()!=R.id.rb_tenant){
+            role="Property Owner";
+        }
+        String firstName =etFirstName.getText().toString();
+        String lastName =etLastName.getText().toString();
         String pwd =etPwd.getText().toString();
+        String pwdAgain =etPwdAgain.getText().toString();
         if (TextUtils.isEmpty(email)){
             return;
         }
-        if (TextUtils.isEmpty(name)){
+        if (TextUtils.isEmpty(firstName)){
+            return;
+        }
+        if (TextUtils.isEmpty(lastName)){
             return;
         }
         if (TextUtils.isEmpty(role)){
@@ -100,6 +96,15 @@ public class RegisterActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(pwd)){
             return;
         }
+        if (TextUtils.isEmpty(pwdAgain)){
+            return;
+        }
+        if (!pwd.equals(pwdAgain)){
+            etPwd.setText("");
+            etPwdAgain.setText("");
+            return;
+        }
+        String finalRole = role;
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -107,9 +112,10 @@ public class RegisterActivity extends AppCompatActivity {
                     String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
                     User user = new User();
                     user.setEmail(email);
-                    user.setName(name);
+                    user.setFirstName(firstName);
+                    user.setLastName(lastName);
                     user.setUid(uid);
-                    user.setRole(role);
+                    user.setRole(finalRole);
                     FirebaseDatabase.getInstance().getReference().child("UserInfo").child(uid).setValue(user);
                     finish();
                 }
