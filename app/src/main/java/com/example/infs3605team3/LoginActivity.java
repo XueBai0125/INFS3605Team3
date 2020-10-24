@@ -64,13 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(LoginActivity.this, "己成功送驗證郵件，請檢查你的電子郵件信箱/Please check your email", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(LoginActivity.this, "Please check your email", Toast.LENGTH_LONG).show();
 
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(LoginActivity.this, "無法送出驗證郵件/Can't send verification email：" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, "Can't send verification email：" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 
                                     }
                                 });
