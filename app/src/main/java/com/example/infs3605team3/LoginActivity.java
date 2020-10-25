@@ -2,6 +2,7 @@ package com.example.infs3605team3;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.infs3605team3.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,6 +26,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.gyf.immersionbar.ImmersionBar;
 
 public class LoginActivity extends AppCompatActivity {
@@ -50,13 +59,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUserStatus() {
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user =  FirebaseAuth.getInstance().getCurrentUser();
         if (user!=null){
             if (!user.isEmailVerified()) {
                 new AlertDialog.Builder(this)
-                        .setTitle("提示")
-                        .setMessage("邮箱尚未验证,请发送邮件认证")
-                        .setPositiveButton("发送邮件", new DialogInterface.OnClickListener() {
+                        .setTitle("Tips")
+                        .setMessage("Email has not been verified, please send email for verification")
+                        .setPositiveButton("Send Email", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -64,13 +73,13 @@ public class LoginActivity extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {
-                                                Toast.makeText(LoginActivity.this, "己成功送驗證郵件，請檢查你的電子郵件信箱/Please check your email", Toast.LENGTH_LONG).show();
+                                                Toast.makeText(LoginActivity.this, "Please check your email", Toast.LENGTH_LONG).show();
 
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(LoginActivity.this, "無法送出驗證郵件/Can't send verification email：" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this, "Can't send verification email：" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
 
                                     }
                                 });

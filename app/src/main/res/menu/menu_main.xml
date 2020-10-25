@@ -9,12 +9,7 @@
         android:icon="@drawable/ic_bottombar_home"
         app:showAsAction="ifRoom"
         android:title="Search" />
-    <item
-        android:id="@+id/nav_list"
-        android:enabled="true"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_bottombar_favor"
-        android:title="List" />
+
     <item
         android:id="@+id/nav_chat"
         android:enabled="true"

@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     private Fragment mAppFragment;
-    private Fragment mBookingFragment;
     private Fragment mMineFragment;
     private Fragment mChatFragment;
 
@@ -40,9 +39,7 @@ public class MainActivity extends AppCompatActivity {
         if (mAppFragment == null) {
             mAppFragment = HomeFragment.newInstance();
         }
-        if (mBookingFragment == null) {
-            mBookingFragment = BookingFragment.newInstance();
-        }
+
 
         if (mChatFragment == null) {
             mChatFragment = ChatFragment.newInstance();
@@ -56,10 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.nav_home) {
                     switchTab(mAppFragment);
                     return true;
-                } else if (menuItem.getItemId() == R.id.nav_list) {
-                    switchTab(mBookingFragment);
-                    return true;
-                }else if (menuItem.getItemId() == R.id.nav_chat) {
+                } else if (menuItem.getItemId() == R.id.nav_chat) {
                     switchTab(mChatFragment);
                     return true;
                 }else if (menuItem.getItemId() == R.id.nav_profile) {
