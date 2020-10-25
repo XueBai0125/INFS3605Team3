@@ -78,7 +78,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  model = dataSnapshot.getValue(User.class);
                 tvUsername.setText(model.getLastName()+model.getFirstName());
-                if (model.equals("tenant")){
+                if (model.getRole().equals("tenant")){
                     tvFirst.setText("My Booking");
                     tvSecond.setText("My Experience");
                     tvThree.setText("Wishlist");
@@ -86,7 +86,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }else{
                     tvFirst.setText("My Listing");
                     tvSecond.setText("List a Space");
-                    tvThree.setText("Q&");
+                    tvThree.setText("Q&A");
                     tvFour.setText("My Experience");
                 }
             }
