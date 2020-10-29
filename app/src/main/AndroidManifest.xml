@@ -7,9 +7,9 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo"
@@ -17,10 +17,11 @@
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DetailedActivity"></activity>
         <activity
             android:name=".ListActivity"
             android:label="@string/title_activity_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".SplashActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -47,10 +48,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".ForgetPwdActivity"/>
-        <activity android:name=".InfosActivity"/>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ForgetPwdActivity" />
+        <activity android:name=".InfosActivity" />
     </application>
 
 </manifest>
