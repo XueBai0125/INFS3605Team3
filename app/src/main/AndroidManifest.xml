@@ -51,6 +51,9 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".ForgetPwdActivity"/>
         <activity android:name=".InfosActivity"/>
+        <activity android:name=".booking.BookingActivity"/>
+        <activity android:name=".wishlist.WishListActivity"/>
+        <activity android:name=".experience.MyExperienceActivity"/>
     </application>
 
 </manifest>
