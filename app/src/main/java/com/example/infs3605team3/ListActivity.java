@@ -1,5 +1,6 @@
 package com.example.infs3605team3;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,8 +27,22 @@ public class ListActivity extends AppCompatActivity {
         rview = findViewById(R.id.rview);
         layoutManager = new GridLayoutManager(this, 2);
         rview.setLayoutManager(layoutManager);
-        adapter = new ListAdapter(images);
+
+        ListAdapter.RecyclerViewClickListener listener = new ListAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                clickResponse(position);
+            }
+        };
+
+        adapter = new ListAdapter(images, listener);
         rview.setAdapter(adapter);
         rview.setHasFixedSize(true);
+    }
+    private void clickResponse(int position) {
+        Intent intent = new Intent(this, DetailedActivity.class);
+        intent.putExtra("image", images);
+        intent.putExtra("position", position);
+        startActivity(intent);
     }
 }

@@ -12,19 +12,31 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
 
     int[] images;
+    RecyclerViewClickListener listener;
 
-    public ListAdapter(int[] arr) {
+    public ListAdapter(int[] arr, RecyclerViewClickListener listener) {
         images = arr;
+        this.listener = listener;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public interface RecyclerViewClickListener {
+        void onClick(View view, int position);
+    }
+
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView imageView;
         TextView textView;
+        RecyclerViewClickListener listener;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             textView = itemView.findViewById(R.id.tView);
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v, getAdapterPosition());
         }
     }
 
