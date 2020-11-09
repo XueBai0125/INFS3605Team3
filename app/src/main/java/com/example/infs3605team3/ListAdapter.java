@@ -1,5 +1,6 @@
 package com.example.infs3605team3;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.infs3605team3.model.Office;
+
+import java.util.ArrayList;
+
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> {
 
-    int[] images;
+    ArrayList<Office> images;
     RecyclerViewClickListener listener;
-
-    public ListAdapter(int[] arr, RecyclerViewClickListener listener) {
+    Context context;
+    public ListAdapter(Context context, ArrayList<Office> arr, RecyclerViewClickListener listener) {
+        this.context = context;
         images = arr;
         this.listener = listener;
     }
@@ -51,12 +61,15 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.imageView.setImageResource(images[position]);
-        holder.textView.setText("Office " + (position+1));
+        RoundedCorners roundedCorners=new RoundedCorners(30);
+        RequestOptions requestOptions =    RequestOptions.bitmapTransform(roundedCorners);
+        requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
+        Glide.with(context).load(images.get(position).img).apply(requestOptions).into(holder.imageView);
+        holder.textView.setText(images.get(position).name);
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return images.size();
     }
 }

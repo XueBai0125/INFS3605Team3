@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -55,6 +56,7 @@
         <activity android:name=".booking.BookingActivity"/>
         <activity android:name=".wishlist.WishListActivity"/>
         <activity android:name=".experience.MyExperienceActivity"/>
+        <activity android:name=".AddOfficeActivity"/>
     </application>
 
 </manifest>

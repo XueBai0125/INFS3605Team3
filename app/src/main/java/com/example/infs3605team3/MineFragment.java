@@ -159,6 +159,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 if (model.getRole().equals("tenant")){
                     Intent intent =    new Intent(getActivity(), BookingActivity.class);
                     startActivity(intent);
+                }else{
+                    Intent intent =    new Intent(getActivity(), ListActivity.class);
+                    startActivity(intent);
                 }
 
                 break;
@@ -167,10 +170,13 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
                 if (model.getRole().equals("tenant")){
-
+                    Intent intent1 =    new Intent(getActivity(), MyExperienceActivity.class);
+                    startActivity(intent1);
+                }else{
+                    Intent intent1 =    new Intent(getActivity(), AddOfficeActivity.class);
+                    startActivity(intent1);
                 }
-                Intent intent1 =    new Intent(getActivity(), MyExperienceActivity.class);
-                startActivity(intent1);
+
                 break;
             case R.id.ll_three:
                 if (model==null){

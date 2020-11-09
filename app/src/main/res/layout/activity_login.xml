@@ -55,7 +55,7 @@
         android:layout_marginTop="6dp"
         android:background="@drawable/et_bg"
         android:hint="Email Address"
-        android:text="602596980@qq.com"
+        android:text="20856715@qq.com"
         android:inputType="textEmailAddress"
         android:maxLines="1"
         android:paddingLeft="10dp"
