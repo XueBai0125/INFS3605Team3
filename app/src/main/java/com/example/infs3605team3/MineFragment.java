@@ -1,29 +1,23 @@
 package com.example.infs3605team3;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.example.infs3605team3.booking.BookingActivity;
+import com.example.infs3605team3.booking.MyBookingActivity;
 import com.example.infs3605team3.experience.MyExperienceActivity;
-import com.example.infs3605team3.model.Booking;
 import com.example.infs3605team3.model.User;
+import com.example.infs3605team3.qa.QAActivity;
 import com.example.infs3605team3.wishlist.WishListActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -100,7 +94,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                  model = dataSnapshot.getValue(User.class);
-                tvUsername.setText(model.getLastName()+model.getFirstName());
+                tvUsername.setText(model.getLastName()+"  "+model.getFirstName());
                 if (model.getRole().equals("tenant")){
                     tvFirst.setText("My Booking");
                     tvSecond.setText("My Experience");
@@ -125,7 +119,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent intent= null;
         switch (v.getId()){
+
             case R.id.iv_set:
                 new AlertDialog.Builder(getActivity())
                         .setTitle("Alert")
@@ -157,10 +153,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
                 if (model.getRole().equals("tenant")){
-                    Intent intent =    new Intent(getActivity(), BookingActivity.class);
+                     intent =    new Intent(getActivity(), MyBookingActivity.class);
                     startActivity(intent);
                 }else{
-                    Intent intent =    new Intent(getActivity(), ListActivity.class);
+                     intent =    new Intent(getActivity(), ListActivity.class);
                     startActivity(intent);
                 }
 
@@ -183,13 +179,22 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     return;
                 }
                 if (model.getRole().equals("tenant")){
-
+                    intent =    new Intent(getActivity(), WishListActivity.class);
+                    startActivity(intent);
+                }else{
+                    intent =    new Intent(getActivity(), QAActivity.class);
+                    startActivity(intent);
                 }
-                Intent intent =    new Intent(getActivity(), WishListActivity.class);
-                startActivity(intent);
+
                 break;
             case R.id.ll_four:
-
+                if (model.getRole().equals("tenant")){
+                    intent =    new Intent(getActivity(), QAActivity.class);
+                    startActivity(intent);
+                }else{
+                    intent =    new Intent(getActivity(), MyExperienceActivity.class);
+                    startActivity(intent);
+                }
                 break;
         }
     }

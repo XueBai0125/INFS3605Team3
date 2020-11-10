@@ -1,6 +1,7 @@
 package com.example.infs3605team3;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,14 +55,24 @@ public class HomeFragment  extends Fragment {
 
             @Override
             public void onClick(View view, int position) {
-
+                Office item = list.get(position);
+                Intent intent = new Intent(getActivity(),OfficeDetailActivity.class);
+                intent.putExtra("item",item);
+                startActivity(intent);
             }
 
 
         });
+
         rview.setAdapter(adapter);
         rview.setHasFixedSize(true);
         init();
+        rootview.findViewById(R.id.rl_moregood).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(),AllActivity.class));
+            }
+        });
     }
 
     private void init() {
@@ -75,7 +86,10 @@ public class HomeFragment  extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Office office = snapshot.getValue(Office.class);
                     office.id = (snapshot.getKey());
-                    list.add(office);
+                    if (office.recommend){
+                        list.add(office);
+                    }
+
 
 
 

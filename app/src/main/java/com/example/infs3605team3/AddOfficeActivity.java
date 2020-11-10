@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.Continuation;
@@ -37,12 +41,17 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.gyf.immersionbar.ImmersionBar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 public class AddOfficeActivity extends AppCompatActivity {
-    String bookingTime;
+    private TextView tvStart;
+    private TextView tvEnd;
     private EditText tv_country;
     private EditText tv_State;
     private EditText tv_Surburb;
@@ -67,6 +76,8 @@ public class AddOfficeActivity extends AppCompatActivity {
     private ImageView iv_img;
     private ProgressDialog dialog;
     private String imageUrl;
+    private Date selectStartDate;
+    private Date selectEndData;
     String[] permissions = new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE};
     List<String> mPermissionList = new ArrayList<>();
@@ -84,6 +95,8 @@ public class AddOfficeActivity extends AppCompatActivity {
         String halfHour= tv_hhour.getText().toString();
         String highDay= tv_hone.getText().toString();
         String lowDay= tv_lone.getText().toString();
+        String endTime= tvEnd.getText().toString();
+        String startTime= tvStart.getText().toString();
 
         HashMap<String, Object> hashMap = new HashMap<>();
         if (cb_whiteb.isChecked()){
@@ -154,10 +167,13 @@ public class AddOfficeActivity extends AppCompatActivity {
         hashMap.put("street",street);
         hashMap.put("name",name);
         hashMap.put("des",des);
-        hashMap.put("bookingTime",bookingTime);
+        hashMap.put("startTime",startTime);
+        hashMap.put("endTime",endTime);
         hashMap.put("halfHour",halfHour);
         hashMap.put("highDay",highDay);
         hashMap.put("lowDay",lowDay);
+        hashMap.put("recommend",true);
+        hashMap.put("wish",false);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.child("Office").push().setValue(hashMap);
@@ -167,10 +183,7 @@ public class AddOfficeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ImmersionBar.with(this)
-                .transparentStatusBar()
-                .statusBarDarkFont(true, 0.2f)
-                .init();
+
         setContentView(R.layout.activity_addoffice);
         dialog = new ProgressDialog(this);
         initView();
@@ -187,23 +200,15 @@ public class AddOfficeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        ImmersionBar.with(this)
+                .titleBar(mToolbar)
+                .transparentStatusBar()
+                .statusBarDarkFont(true, 0.2f)
+                .init();
 
-        Spinner spinner = (Spinner) findViewById(R.id.sp_bookingtime);
-        String[] mItems = {"All date", "All date", "All date", "All date"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mItems);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                bookingTime= mItems[pos];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
         tv_country = findViewById(R.id.tv_country);
+        tvStart = findViewById(R.id.tv_bookingtime);
+        tvEnd = findViewById(R.id.tv_end);
         tv_State = findViewById(R.id.tv_State);
         tv_Surburb = findViewById(R.id.tv_Surburb);
         tv_Street = findViewById(R.id.tv_Street);
@@ -225,7 +230,18 @@ public class AddOfficeActivity extends AppCompatActivity {
         tv_hhour = findViewById(R.id.tv_hhour);
         tv_hone = findViewById(R.id.tv_hone);
         tv_lone = findViewById(R.id.tv_lone);
-
+        tvStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectBeginTime();
+            }
+        });
+        tvEnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectEndTime();
+            }
+        });
         findViewById(R.id.btn_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -319,6 +335,85 @@ public class AddOfficeActivity extends AppCompatActivity {
             }
         });
     }
+    private void selectBeginTime() {
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        Calendar selectDate = Calendar.getInstance();
+        endDate.set(2030, 1, 1);
+        Date date = getDateAfter(new Date(),1);
+        startDate.setTime(date);
+        if (selectEndData!=null){
+            endDate.setTime(selectEndData);
+            endDate.add(Calendar.DAY_OF_MONTH, -1);
+            if (startDate.getTime().getTime()>endDate.getTime().getTime()){
+                Calendar temp = startDate;
+                startDate = endDate;
+                endDate = temp;
+            }
+        }
+        if (selectStartDate!=null){
+            selectDate.setTime(selectStartDate);
+        }else{
+            selectDate = startDate;
+        }
+        TimePickerView startPicker = new TimePickerBuilder(AddOfficeActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                selectStartDate = date;
+                tvStart.setText(getTime(date));
 
+            }
+        }).setDate(selectDate).setRangDate(startDate,endDate).build();
+        startPicker.show();
+    }
+    public static Date getDateAfter(Date d, int day) {
+        Calendar now = Calendar.getInstance();
+        now.setTime(d);
+        now.set(Calendar.DATE, now.get(Calendar.DATE) + day);
+        return now.getTime();
+    }
+    private String getTime(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.format(date);
+    }
+    private Date getDate(String time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date date = format.parse(time);
+            return date;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    private void selectEndTime() {
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+        Calendar selectDate = Calendar.getInstance();
+        endDate.set(2030, 1, 1);
+        //如果没有选择截止日期,那么起始时间为明天
+        if (selectStartDate==null){
+            Date date = getDateAfter(new Date(),2);
+            startDate.setTime(date);
+        }else{
+            //起始时间要大1一天
+            startDate.setTime(selectStartDate);
+            startDate.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        if (selectEndData!=null){
+            selectDate.setTime(selectEndData);
+        }else{
+            selectDate = startDate;
+        }
+        TimePickerView endPicker = new TimePickerBuilder(AddOfficeActivity.this, new OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date, View v) {
+                selectEndData = date;
+                tvEnd.setText(getTime(date));
+
+            }
+        }).setDate(selectDate).setRangDate(startDate,endDate).build();
+        endPicker.show();
+    }
 
 }

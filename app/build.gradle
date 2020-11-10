@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:2.0.3'
     implementation 'com.google.android.gms:play-services:12.0.1'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.contrarywind:Android-PickerView:4.1.8'
 }

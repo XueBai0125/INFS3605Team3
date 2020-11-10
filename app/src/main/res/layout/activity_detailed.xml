@@ -193,6 +193,8 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="White board">
                 </CheckBox>
@@ -202,6 +204,8 @@
                     android:layout_marginRight="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="Apple Tv">
                 </CheckBox>
@@ -216,6 +220,8 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="Telephone">
                 </CheckBox>
@@ -225,6 +231,8 @@
                     android:layout_marginRight="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="Printer">
                 </CheckBox>
@@ -239,6 +247,8 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="Wifi">
                 </CheckBox>
@@ -248,6 +258,8 @@
                     android:layout_marginRight="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="24 HOURS ACCESS">
                 </CheckBox>
@@ -262,6 +274,8 @@
                     android:layout_marginStart="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="Cleaning Service">
                 </CheckBox>
@@ -271,6 +285,8 @@
                     android:layout_marginRight="@dimen/dp_16"
                     android:layout_width="0dp"
                     android:layout_weight="1"
+                    android:enabled="false"
+                    android:clickable="false"
                     android:layout_height="wrap_content"
                     android:text="Reception">
                 </CheckBox>
@@ -280,6 +296,8 @@
                 android:id="@+id/cb_computer"
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_width="wrap_content"
+                android:enabled="false"
+                android:clickable="false"
                 android:layout_height="wrap_content"
                 android:text="Computer">
             </CheckBox>
@@ -289,6 +307,8 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
+                android:clickable="false"
                 android:text="Paper">
             </CheckBox>
             <CheckBox
@@ -297,6 +317,8 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
+                android:clickable="false"
                 android:text="Fully furnished">
             </CheckBox>
             <CheckBox
@@ -305,6 +327,8 @@
                 android:layout_marginStart="@dimen/dp_16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:enabled="false"
+                android:clickable="false"
                 android:text="Secure Access">
             </CheckBox>
             <TextView
@@ -421,13 +445,48 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="36dp"
                     android:gravity="center_vertical"
-                    android:text="Available booking time"
+                    android:text="Start time"
                     android:textColor="#666666"
                     android:textSize="16sp"
                     />
 
                 <TextView
-                    android:id="@+id/sp_bookingtime"
+                    android:id="@+id/tv_bookingtime"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:textColor="#666666"
+                    android:textColorHint="#AAAAAA"
+                    android:textCursorDrawable="@null"
+                    android:textSize="16sp"
+                    android:background="@null"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#F2F3F5"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="36dp"
+                    android:gravity="center_vertical"
+                    android:text="End time"
+                    android:textColor="#666666"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_end"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -465,6 +524,7 @@
                     android:singleLine="true"
                     android:textColor="#666666"
                     android:textColorHint="#AAAAAA"
+                    android:gravity="center_vertical"
                     android:textCursorDrawable="@null"
                     android:textSize="16sp"
                     android:background="@null"/>
@@ -490,6 +550,7 @@
                     android:layout_height="match_parent"
                     android:hint="Highest price for One day"
                     android:singleLine="true"
+                    android:gravity="center_vertical"
                     android:textColor="#666666"
                     android:textColorHint="#AAAAAA"
                     android:textCursorDrawable="@null"
@@ -517,6 +578,7 @@
                     android:layout_height="match_parent"
                     android:hint="Lowest price for One day"
                     android:singleLine="true"
+                    android:gravity="center_vertical"
                     android:textColor="#666666"
                     android:textColorHint="#AAAAAA"
                     android:textCursorDrawable="@null"

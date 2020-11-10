@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -82,24 +84,35 @@ public class RegisterActivity extends AppCompatActivity {
         String pwd =etPwd.getText().toString();
         String pwdAgain =etPwdAgain.getText().toString();
         if (TextUtils.isEmpty(email)){
+            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(firstName)){
+            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(lastName)){
+            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(role)){
+            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(pwd)){
+            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(pwdAgain)){
+            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (pwd.length()<8){
+            Toast.makeText(RegisterActivity.this,"Password not matching", Toast.LENGTH_LONG).show();
             return;
         }
         if (!pwd.equals(pwdAgain)){
+            Toast.makeText(RegisterActivity.this,"Password not matching", Toast.LENGTH_LONG).show();
             etPwd.setText("");
             etPwdAgain.setText("");
             return;

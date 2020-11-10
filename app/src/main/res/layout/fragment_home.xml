@@ -75,18 +75,41 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="16dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:text="Recommendation"
-        android:textSize="12sp"
-        app:fontFamily="@font/rubik"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/background" />
 
+    <RelativeLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/background"
+        android:layout_marginTop="@dimen/dp_16"
+        android:id="@+id/rl_moregood"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommendation"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="14dp"
+            android:text="see all"
+            android:textColor="@color/color_333333"
+            android:textSize="@dimen/sp_14" />
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/rightmid_grey" />
+    </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rview"
         android:layout_width="0dp"
@@ -95,6 +118,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/rl_moregood" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

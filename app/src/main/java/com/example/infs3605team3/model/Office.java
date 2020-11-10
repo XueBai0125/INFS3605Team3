@@ -21,10 +21,13 @@ public class Office implements Serializable {
     public boolean paper;
     public boolean fullyFurnished;
     public boolean secureAccess;
+    public boolean recommend;
+    public boolean wish;
     public String name;
     public String img;
     public String des;
-    public String bookingTime;
+    public String startTime;
+    public String endTime;
     public String halfHour;
     public String highDay;
     public String lowDay;

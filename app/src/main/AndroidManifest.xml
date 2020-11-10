@@ -53,10 +53,14 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".ForgetPwdActivity"/>
         <activity android:name=".InfosActivity"/>
-        <activity android:name=".booking.BookingActivity"/>
+        <activity android:name=".booking.MyBookingActivity"/>
         <activity android:name=".wishlist.WishListActivity"/>
         <activity android:name=".experience.MyExperienceActivity"/>
         <activity android:name=".AddOfficeActivity"/>
+        <activity android:name=".qa.QAActivity"/>
+        <activity android:name=".OfficeDetailActivity"/>
+        <activity android:name=".BookingActivity"/>
+        <activity android:name=".AllActivity"/>
     </application>
 
 </manifest>

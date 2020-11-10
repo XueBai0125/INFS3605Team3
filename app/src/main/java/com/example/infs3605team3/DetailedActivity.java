@@ -34,6 +34,7 @@ public class DetailedActivity extends AppCompatActivity {
     private TextView tv_Street;
     private TextView tv_Name;
     private TextView sp_bookingtime;
+    private TextView tvEndTime;
     private TextView tv_des;
     private TextView tv_hhour;
     private TextView tv_hone;
@@ -51,8 +52,6 @@ public class DetailedActivity extends AppCompatActivity {
     private CheckBox cb_Fully_furnished;
     private CheckBox cb_Secure_Access;
     private ImageView iv_img;
-    private ProgressDialog dialog;
-    private String imageUrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +64,8 @@ public class DetailedActivity extends AppCompatActivity {
         tv_Surburb.setText(office.surburb+"");
         tv_Street.setText(office.street+"");
         tv_Name.setText(office.name+"");
-        sp_bookingtime.setText(office.bookingTime+"");
+        sp_bookingtime.setText(office.startTime+"");
+        tvEndTime.setText(office.endTime+"");
         tv_des.setText(office.des+"");
         tv_hhour.setText(office.halfHour+"");
         tv_hone.setText(office.highDay+"");
@@ -108,7 +108,8 @@ public class DetailedActivity extends AppCompatActivity {
         cb_wifi = findViewById(R.id.cb_wifi);
         cb_telephone = findViewById(R.id.cb_telephone);
         cb_printer = findViewById(R.id.cb_printer);
-        sp_bookingtime = findViewById(R.id.sp_bookingtime);
+        sp_bookingtime = findViewById(R.id.tv_bookingtime);
+        tvEndTime = findViewById(R.id.tv_end);
         cb_cleanSer = findViewById(R.id.cb_cleanSer);
         cb_24hc = findViewById(R.id.cb_24hc);
         cb_reception = findViewById(R.id.cb_reception);

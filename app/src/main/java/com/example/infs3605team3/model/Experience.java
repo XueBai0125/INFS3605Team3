@@ -1,6 +1,6 @@
 package com.example.infs3605team3.model;
 
-public class Booking {
+public class Experience {
     public String id;
     public String endTime;
     public String startTime;

@@ -421,13 +421,48 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="36dp"
                     android:gravity="center_vertical"
-                    android:text="Available booking time"
+                    android:text="Start time"
                     android:textColor="#666666"
                     android:textSize="16sp"
                     />
 
-                <Spinner
-                    android:id="@+id/sp_bookingtime"
+                <TextView
+                    android:id="@+id/tv_bookingtime"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:textColor="#666666"
+                    android:textColorHint="#AAAAAA"
+                    android:textCursorDrawable="@null"
+                    android:textSize="16sp"
+                    android:background="@null"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_marginLeft="@dimen/dp_16"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#F2F3F5"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/dp_16"
+                android:paddingRight="@dimen/dp_16"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="36dp"
+                    android:gravity="center_vertical"
+                    android:text="End time"
+                    android:textColor="#666666"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_end"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"

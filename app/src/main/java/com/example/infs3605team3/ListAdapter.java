@@ -33,21 +33,17 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         void onClick(View view, int position);
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
         TextView textView;
-        RecyclerViewClickListener listener;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.image);
             textView = itemView.findViewById(R.id.tView);
         }
 
-        @Override
-        public void onClick(View v) {
-            listener.onClick(v, getAdapterPosition());
-        }
+
     }
 
 
@@ -66,6 +62,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         requestOptions.transform(new CenterCrop(), new RoundedCorners(30));
         Glide.with(context).load(images.get(position).img).apply(requestOptions).into(holder.imageView);
         holder.textView.setText(images.get(position).name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(v, position);
+            }
+        });
     }
 
     @Override
