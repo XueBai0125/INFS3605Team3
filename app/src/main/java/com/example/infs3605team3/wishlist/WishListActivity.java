@@ -102,11 +102,13 @@ public class WishListActivity extends AppCompatActivity {
     }
 
     public void initDataList(){
+
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Wish");
         mProgressDialog.show();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                houseList.clear();
                 String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 mProgressDialog.dismiss();
 
