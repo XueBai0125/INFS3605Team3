@@ -163,7 +163,6 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "password is not correct.",
                     Toast.LENGTH_SHORT).show();
         }else if (exception instanceof FirebaseAuthInvalidUserException) {
-
             Toast.makeText(LoginActivity.this, "email already used",
                     Toast.LENGTH_SHORT).show();
         }else{

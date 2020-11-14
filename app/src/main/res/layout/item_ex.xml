@@ -14,8 +14,8 @@
         android:layout_marginStart="@dimen/dp_16"
         app:layout_constraintStart_toStartOf="parent"
         android:src="@drawable/o1"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_width="130dp"
+        android:layout_height="130dp" />
     <TextView
         android:id="@+id/tv_name"
         android:layout_marginTop="@dimen/dp_16"
@@ -46,7 +46,22 @@
         android:textColor="#666666"
         android:textSize="14sp"
         android:layout_height="wrap_content"/>
-
+    <com.example.infs3605team3.SpaceRatingBar
+        android:id="@+id/rb_info"
+        android:layout_marginTop="@dimen/dp_16"
+        app:layout_constraintTop_toBottomOf="@id/tv_info"
+        app:layout_constraintStart_toEndOf="@id/iv_logo"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:layout_marginStart="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:starEmpty="@drawable/comment_ratingbar_off"
+        app:starFill="@drawable/comment_ratingbar_on"
+        app:starImageSize="16dp"
+        app:starPadding="12dp"
+        app:starStep="0"
+        app:stepSize="Full"
+        />
     <ImageView
         android:id="@+id/iv_line"
         android:layout_marginEnd="@dimen/dp_16"

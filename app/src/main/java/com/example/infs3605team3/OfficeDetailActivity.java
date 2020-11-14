@@ -1,5 +1,6 @@
 package com.example.infs3605team3;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,17 +8,28 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.example.infs3605team3.model.Booking;
+import com.example.infs3605team3.model.Experience;
 import com.example.infs3605team3.model.Office;
+import com.example.infs3605team3.model.Wish;
 import com.example.infs3605team3.view.FlowLayout;
 import com.example.infs3605team3.view.FlowerAttrView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class OfficeDetailActivity extends AppCompatActivity {
@@ -31,14 +43,49 @@ public class OfficeDetailActivity extends AppCompatActivity {
     private TextView tv_location;
     private TextView tv_time;
     private TextView tv_des;
+    private ProgressDialog mProgressDialog;
+    private String officeId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_officedetailed);
+        mProgressDialog = new ProgressDialog(this);
         Intent intent = getIntent();
+        officeId = intent.getStringExtra("id");
         office = (Office) intent.getSerializableExtra("item");
         initView();
+
+        if (office!=null){
+            rereshUI();
+        }else{
+            getDetail();
+        }
+    }
+
+    private void getDetail() {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Office").child(officeId);
+        mProgressDialog.show();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mProgressDialog.dismiss();
+                office =  dataSnapshot.getValue(Office.class);
+                if (office!=null){
+                    rereshUI();
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                mProgressDialog.dismiss();
+            }
+        });
+    }
+
+    private void rereshUI() {
         tv_price.setText(office.highDay+"");
         tv_name.setText(office.name+"");
         tv_des.setText(office.des+"");
@@ -96,6 +143,7 @@ public class OfficeDetailActivity extends AppCompatActivity {
             }
         }
     }
+
     public static float getScreenDensity(Context context) {
         return context.getResources().getDisplayMetrics().density;
     }
@@ -104,6 +152,7 @@ public class OfficeDetailActivity extends AppCompatActivity {
         final float scale = getScreenDensity(context);
         return (int) (dipValue * scale + 0.5);
     }
+
     private void initView() {
 
         Toolbar mToolbar = findViewById(R.id.toolbar);
@@ -136,7 +185,56 @@ public class OfficeDetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.iv_coll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getWishList();
+            }
+        });
+
+    }
+
+    private void getWishList() {
+        if (office==null){
+            return;
+        }
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Wish");
+        mProgressDialog.show();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                mProgressDialog.dismiss();
+                Wish myWish = null;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Wish wish = snapshot.getValue(Wish.class);
+                    wish.id = (snapshot.getKey());
+                    if (wish.uid.equals(uid)&&wish.officeId.equals(office.id)){
+                        myWish= wish;
+                    }
+
+                }
+                if (myWish==null){
+                    HashMap<String, Object> hashMap = new HashMap<>();
+                    hashMap.put("uid", uid);
+                    hashMap.put("officeId", office.id);
+                    hashMap.put("officeName",office.name);
+                    hashMap.put("location",office.country+office.state+office.surburb+office.street);
+                    hashMap.put("image",office.img);
+                    hashMap.put("price",office.highDay);
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                    databaseReference.child("Wish").push().setValue(hashMap);
+                }
+                Toast.makeText(OfficeDetailActivity.this, "success.",
+                        Toast.LENGTH_SHORT).show();
 
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                mProgressDialog.dismiss();
+            }
+        });
     }
 }
