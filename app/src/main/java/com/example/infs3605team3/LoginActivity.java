@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
         }else if (exception instanceof FirebaseAuthInvalidUserException) {
 
-            Toast.makeText(LoginActivity.this, "User is not exist, please sign up",
+            Toast.makeText(LoginActivity.this, "email already used",
                     Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(LoginActivity.this, "Authentication failed.",
