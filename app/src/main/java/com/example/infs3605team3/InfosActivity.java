@@ -35,7 +35,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.gyf.immersionbar.ImmersionBar;
 
 
 public class InfosActivity extends AppCompatActivity {
@@ -96,11 +95,6 @@ public class InfosActivity extends AppCompatActivity {
                 finish();
             }
         });
-        ImmersionBar.with(this)
-                .titleBar(mToolbar)
-                .transparentStatusBar()
-                .statusBarDarkFont(true, 0.2f)
-                .init();
          tvEmail =  findViewById(R.id.tv_email);
         tvName =  findViewById(R.id.tv_name);
         tvLastName =  findViewById(R.id.tv_lastname);

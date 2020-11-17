@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".OfficeDetail">
+
+    <Button
+        android:id="@+id/Star2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/comment_ratingbar_on"
+        app:layout_constraintEnd_toStartOf="@+id/Star3"
+        app:layout_constraintTop_toTopOf="@+id/Star1"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/Star1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/comment_ratingbar_on"
+        app:layout_constraintBottom_toBottomOf="@+id/GoBackButton"
+        app:layout_constraintEnd_toStartOf="@+id/Star2"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/Star3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/comment_ratingbar_off"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Star1"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/Star4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/comment_ratingbar_on"
+        app:layout_constraintStart_toEndOf="@+id/Star3"
+        app:layout_constraintTop_toTopOf="@+id/Star1"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/Star5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/comment_ratingbar_on"
+        app:layout_constraintStart_toEndOf="@+id/Star4"
+        app:layout_constraintTop_toTopOf="@+id/Star1"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/BookAReservationButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="#2196F3"
+        android:text="MAKE A BOOKING"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/GoBackButton"
+        app:layout_constraintEnd_toStartOf="@+id/AddToWishListButton"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="gone" />
+
+    <Button
+        android:id="@+id/GoBackButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="#F44336"
+        android:text="Go Back"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/FilteringButton"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="#2196F3"
+        android:text="Rate"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/AddToWishListButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="#FF9800"
+        android:text="Add To Wishlist"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/GoBackButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/BookAReservationButton"
+        tools:visibility="gone" />
+
+    <CheckBox
+        android:id="@+id/IsThereInternet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Internet"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsTherePrinter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressText" />
+
+    <CheckBox
+        android:id="@+id/IsTherePrinter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Printer"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereKitchen"
+        app:layout_constraintStart_toEndOf="@+id/IsThereInternet"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressText" />
+
+    <CheckBox
+        android:id="@+id/IsThereKitchen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Kitchen"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereScanner"
+        app:layout_constraintStart_toEndOf="@+id/IsTherePrinter"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressText" />
+
+    <CheckBox
+        android:id="@+id/IsThereScanner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Scanner"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IsThereKitchen"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressText" />
+
+    <CheckBox
+        android:id="@+id/IsThere24HourAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="24 Hr"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsTherePrinter"
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IsThereInternet" />
+
+    <CheckBox
+        android:id="@+id/Security"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Security"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereScanner"
+        app:layout_constraintStart_toEndOf="@+id/IsTherePrinter"
+        app:layout_constraintTop_toBottomOf="@+id/IsThereKitchen" />
+
+    <CheckBox
+        android:id="@+id/Projector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:text="Projector"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toEndOf="@+id/IsThereKitchen"
+        app:layout_constraintTop_toBottomOf="@+id/IsThereScanner" />
+
+    <CheckBox
+        android:id="@+id/Parking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Parking"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereKitchen"
+        app:layout_constraintStart_toEndOf="@+id/IsThereInternet"
+        app:layout_constraintTop_toBottomOf="@+id/IsTherePrinter" />
+
+    <EditText
+        android:id="@+id/StartDateDay"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Day"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/StartDateMonth"
+        app:layout_constraintStart_toEndOf="@+id/StartDateText"
+        app:layout_constraintTop_toBottomOf="@+id/OwnerText" />
+
+    <EditText
+        android:id="@+id/StartDateMonth"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Month"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/StartDateYear"
+        app:layout_constraintStart_toEndOf="@+id/StartDateDay"
+        app:layout_constraintTop_toBottomOf="@+id/OwnerText" />
+
+    <EditText
+        android:id="@+id/StartDateYear"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Year"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/StartDateMonth"
+        app:layout_constraintTop_toBottomOf="@+id/OwnerText" />
+
+    <EditText
+        android:id="@+id/EndDateDay"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Day"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/EndDateMonth"
+        app:layout_constraintStart_toEndOf="@+id/EndDateText"
+        app:layout_constraintTop_toBottomOf="@+id/StartDateText" />
+
+    <EditText
+        android:id="@+id/EndDateMonth"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Month"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/EndDateYear"
+        app:layout_constraintStart_toEndOf="@+id/EndDateDay"
+        app:layout_constraintTop_toBottomOf="@+id/StartDateText" />
+
+    <EditText
+        android:id="@+id/EndDateYear"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Year"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/EndDateMonth"
+        app:layout_constraintTop_toBottomOf="@+id/StartDateText" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="110dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/TitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Title"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/DescriptionText"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Description"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleText" />
+
+    <TextView
+        android:id="@+id/OpenAddressText"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Adress : "
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CountryData" />
+
+    <TextView
+        android:id="@+id/OwnerText"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Rental :"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IsThere24HourAccess" />
+
+    <TextView
+        android:id="@+id/PriceText"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Price"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionText" />
+
+    <TextView
+        android:id="@+id/CapacityText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Price"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/M2Text"
+        app:layout_constraintStart_toEndOf="@+id/PriceText"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionText" />
+
+    <TextView
+        android:id="@+id/CountryData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="Country"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PriceText" />
+
+    <TextView
+        android:id="@+id/M2Text"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:text="M2"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionText" />
+
+    <TextView
+        android:id="@+id/StartDateText"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Start Date:"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/StartDateDay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OwnerText" />
+
+    <TextView
+        android:id="@+id/EndDateText"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="End Date:"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/EndDateDay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StartDateText" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

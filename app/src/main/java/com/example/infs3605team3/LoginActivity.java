@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,8 +26,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etEmail;
     private EditText etPassword;
     private FirebaseAuth mAuth;
+    DatabaseReference db;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,11 +53,34 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         initView();
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            db = FirebaseDatabase.getInstance().getReference();
+            // do your stuff
+        } else {
+            signInAnonymously();
+        }
         ImmersionBar.with(this)
                 .transparentStatusBar()
                 .statusBarDarkFont(false)
                 .init();
 
+    }
+
+    private void signInAnonymously() {
+        mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
+            @Override
+            public void onSuccess(AuthResult authResult) {
+                db = FirebaseDatabase.getInstance().getReference();
+                // do your stuff
+            }
+        })
+                .addOnFailureListener(this, new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e("Tag", "signInAnonymously:FAILURE", exception);
+                    }
+                });
     }
 
     private void updateUserStatus() {
@@ -105,6 +128,8 @@ public class LoginActivity extends AppCompatActivity {
     private void initView() {
         etEmail = findViewById(R.id.et_email);
         etPassword = findViewById(R.id.et_password);
+        etEmail.setText("test@gmail.com");
+        etPassword.setText("123456");
         Button  btnsign = findViewById(R.id.btn_login);
         findViewById(R.id.tv_register).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,47 +152,52 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signIn() {
+        if(db == null)
+            return;
         String email = etEmail.getText().toString();
-        String pwd = etPassword.getText().toString();
+        String password = etPassword.getText().toString();
         if (TextUtils.isEmpty(email)){
             return;
         }
-        if (TextUtils.isEmpty(pwd)){
+        if (TextUtils.isEmpty(password)){
             return;
         }
-        FirebaseAuth mAuth= FirebaseAuth.getInstance();
-        mAuth.signInWithEmailAndPassword(email, pwd)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
 
-                            updateUserStatus();
 
-                        } else {
-                            showError(task.getException());
-                        }
-
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
+        ValueEventListener postListener = new ValueEventListener() {
             @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(LoginActivity.this, "Login Fail:" + e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-    private void showError(Exception exception) {
+            public void onDataChange(DataSnapshot tasksSnapshot) {
+                for (DataSnapshot snapshot: tasksSnapshot.getChildren()) {
 
-        if (exception instanceof FirebaseAuthInvalidCredentialsException) {
-            Toast.makeText(LoginActivity.this, "password is not correct.",
-                    Toast.LENGTH_SHORT).show();
-        }else if (exception instanceof FirebaseAuthInvalidUserException) {
-            Toast.makeText(LoginActivity.this, "email already used",
-                    Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(LoginActivity.this, "Authentication failed.",
-                    Toast.LENGTH_SHORT).show();
-        }
+
+                    String emaildata = (String)snapshot.child("email").getValue();
+                    String Passworddata = (String)snapshot.child("password").getValue();
+
+                    if(emaildata.toLowerCase().equals(email.toLowerCase()) &&
+                            Passworddata.equals(password))
+                    {
+                        User post = snapshot.getValue(User.class);
+                        MainActivity.LoginedUser = post;
+                        Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getBaseContext(),MainActivity.class);
+                        startActivity(i);
+                        finish();
+                        return;
+                    }
+
+                }
+
+                Toast.makeText(LoginActivity.this, "Login failed...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Toast.makeText(LoginActivity.this, "Login failed...", Toast.LENGTH_SHORT).show();
+                // ...
+            }
+        };
+        db.child(MainActivity.UserKey).addListenerForSingleValueEvent(postListener);
+
     }
 }

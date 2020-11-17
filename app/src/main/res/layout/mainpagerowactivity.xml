@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="100">
+
+
+    <ImageView
+        android:id="@+id/RImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="0dp"
+        android:layout_toEndOf="@+id/RImage"
+        android:layout_weight="66.6"
+        android:orientation="vertical"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="200dp"
+            android:layout_height="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="80"
+            android:width="20dp"
+            android:height="20dp"
+            android:gravity="start"
+            android:text="Title"
+            android:textAlignment="textStart"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Rating"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/Title"
+            android:layout_weight="80"
+            android:width="20dp"
+            android:height="20dp"
+            android:drawableEnd="@null"
+            android:drawableRight="@null"
+            android:gravity="end"
+            android:text="TextView1"
+            android:textAlignment="textEnd"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Location"
+            android:layout_width="148dp"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/Title"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="80"
+            android:width="20dp"
+            android:height="20dp"
+            android:gravity="left|bottom"
+            android:text="TextView1"
+            android:textAlignment="gravity"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/Price"
+            android:layout_width="117dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/Location"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/Location"
+            android:layout_weight="80"
+            android:width="20dp"
+            android:height="20dp"
+            android:gravity="right|bottom"
+            android:textAlignment="gravity"
+            android:text="TextView1"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

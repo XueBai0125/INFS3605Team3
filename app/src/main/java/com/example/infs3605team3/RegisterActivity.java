@@ -2,6 +2,7 @@ package com.example.infs3605team3;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,11 +21,19 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.UUID;
 
 public class RegisterActivity extends AppCompatActivity {
     RadioGroup rbRole;
     EditText etEmail,etPwd;
+
+    DatabaseReference db;
 
     private EditText etFirstName;
     private EditText etLastName;
@@ -37,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        db = FirebaseDatabase.getInstance().getReference();
         initView();
         //
 
@@ -84,60 +94,83 @@ public class RegisterActivity extends AppCompatActivity {
         String pwd =etPwd.getText().toString();
         String pwdAgain =etPwdAgain.getText().toString();
         if (TextUtils.isEmpty(email)){
-            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Email field must be filled...", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(firstName)){
-            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Name field must be filled...", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(lastName)){
-            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Last Name field must be filled...", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(role)){
-            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(pwd)){
-            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Password field must be filled...", Toast.LENGTH_LONG).show();
             return;
         }
         if (TextUtils.isEmpty(pwdAgain)){
-            Toast.makeText(RegisterActivity.this,"Please Enter!",Toast.LENGTH_LONG).show();
-            return;
-        }
-        if (pwd.length()<8){
-            Toast.makeText(RegisterActivity.this,"Password not matching", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Password field must be filled...", Toast.LENGTH_LONG).show();
             return;
         }
         if (!pwd.equals(pwdAgain)){
-            Toast.makeText(RegisterActivity.this,"Password not matching", Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this, "Password fields are not same...", Toast.LENGTH_LONG).show();
             etPwd.setText("");
             etPwdAgain.setText("");
             return;
         }
         String finalRole = role;
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        User user = new User();
+        user.setEmail(email.toLowerCase());
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setPassword(pwd);
+        user.setUid(UUID.randomUUID().toString());
+        user.setRole(finalRole);
+
+        ValueEventListener postListener = new ValueEventListener() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
-                    User user = new User();
-                    user.setEmail(email);
-                    user.setFirstName(firstName);
-                    user.setLastName(lastName);
-                    user.setUid(uid);
-                    user.setRole(finalRole);
-                    FirebaseDatabase.getInstance().getReference().child("UserInfo").child(uid).setValue(user);
+            public void onDataChange(DataSnapshot tasksSnapshot) {
+                // Get Post object and use the values to update the UI
+                boolean Exists = false;
+                for (DataSnapshot snapshot: tasksSnapshot.getChildren()) {
+
+
+                    String emaildata = (String)snapshot.child("email").getValue();
+
+                    if(emaildata.toLowerCase().equals(email.toLowerCase()))
+                    {
+                        Exists = true;
+                        break;
+                    }
+
+                }
+
+
+                if(!Exists)
+                {
+                    FirebaseDatabase.getInstance().getReference().child(MainActivity.UserKey).child(user.getUid().toLowerCase()).setValue(user);
+                    Toast.makeText(RegisterActivity.this, "Register successful!", Toast.LENGTH_LONG).show();
                     finish();
                 }
+                else
+                {
+                    Toast.makeText(RegisterActivity.this, "Email already exists...", Toast.LENGTH_LONG).show();
+                }
+                // ...
             }
 
-        });
-
-
-
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Toast.makeText(RegisterActivity.this, "Register Failed", Toast.LENGTH_LONG).show();
+                // ...
+            }
+        };
+        db.child(MainActivity.UserKey).addListenerForSingleValueEvent(postListener);
 
     }
 

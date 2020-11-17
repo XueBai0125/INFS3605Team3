@@ -1,8 +1,14 @@
 package com.example.infs3605team3.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public class User implements Serializable {
+
+    public  User(){
+        ProfileImageLink = "";
+    }
+
     private String uid;
     private String firstName;
     private String lastName;
@@ -10,6 +16,8 @@ public class User implements Serializable {
     private String role;
     private String images;
     private String phoneNumber;
+    private String password;
+    public String ProfileImageLink;
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -65,5 +73,13 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String Password) {
+        this.password = Password;
     }
 }

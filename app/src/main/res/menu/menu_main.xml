@@ -11,11 +11,11 @@
         android:title="Search" />
 
     <item
-        android:id="@+id/nav_chat"
+        android:id="@+id/nav_rent"
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_bottombar_message"
-        android:title="Chat" />
+        android:title="Post Office" />
     <item
         android:id="@+id/nav_profile"
         android:enabled="true"

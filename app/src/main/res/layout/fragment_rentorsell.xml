@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/CreatePostButton"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="#2196F3"
+        android:text="Create Post"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/IsThereInternet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Internet"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsTherePrinter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressInput" />
+
+    <CheckBox
+        android:id="@+id/IsTherePrinter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Printer"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereKitchen"
+        app:layout_constraintStart_toEndOf="@+id/IsThereInternet"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressInput" />
+
+    <CheckBox
+        android:id="@+id/IsThereKitchen"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Kitchen"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereScanner"
+        app:layout_constraintStart_toEndOf="@+id/IsTherePrinter"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressInput" />
+
+    <CheckBox
+        android:id="@+id/IsThereScanner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Scanner"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/IsThereKitchen"
+        app:layout_constraintTop_toBottomOf="@+id/OpenAddressInput" />
+
+    <CheckBox
+        android:id="@+id/IsThere24HourAccess"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:text="24 Hr"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsTherePrinter"
+        app:layout_constraintHorizontal_bias="0.659"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IsThereInternet" />
+
+    <CheckBox
+        android:id="@+id/Projector"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:text="Projector"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toEndOf="@+id/IsThereKitchen"
+        app:layout_constraintTop_toBottomOf="@+id/IsThereScanner" />
+
+    <CheckBox
+        android:id="@+id/Parking"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Parking"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereKitchen"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toEndOf="@+id/IsThereInternet"
+        app:layout_constraintTop_toBottomOf="@+id/IsTherePrinter" />
+
+    <CheckBox
+        android:id="@+id/Security"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Security"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toStartOf="@+id/IsThereScanner"
+        app:layout_constraintHorizontal_bias="0.923"
+        app:layout_constraintStart_toEndOf="@+id/IsTherePrinter"
+        app:layout_constraintTop_toBottomOf="@+id/IsThereKitchen" />
+
+    <EditText
+        android:id="@+id/TitleInput"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="Enter Title Here"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <EditText
+        android:id="@+id/DescriptionInput"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:gravity="left"
+        android:hint="Enter Description Here"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleInput" />
+
+    <EditText
+        android:id="@+id/OpenAddressInput"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:gravity="start"
+        android:hint="Enter Open Address Here"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProvinceInput" />
+
+    <EditText
+        android:id="@+id/PriceInput"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="Enter Price"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionInput" />
+
+    <EditText
+        android:id="@+id/CapacityInput"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="Capacity"
+        android:inputType="numberDecimal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/M2Input"
+        app:layout_constraintStart_toEndOf="@+id/PriceInput"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionInput" />
+
+    <EditText
+        android:id="@+id/CountryInput"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="Country"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PriceInput" />
+
+    <EditText
+        android:id="@+id/DistrictInput"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="Suburb"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/M2Input" />
+
+    <EditText
+        android:id="@+id/ProvinceInput"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="City"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/DistrictInput"
+        app:layout_constraintStart_toEndOf="@+id/CountryInput"
+        app:layout_constraintTop_toTopOf="@+id/CountryInput" />
+
+    <EditText
+        android:id="@+id/M2Input"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:ems="10"
+        android:hint="M2"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionInput" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/clicktouploadimag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="20dp"
+        android:text="Rent Your Office "
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
