@@ -11,6 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 public class SecondFragment extends Fragment {
 
+    int test;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
